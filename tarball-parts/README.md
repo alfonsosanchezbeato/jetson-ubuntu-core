@@ -14,8 +14,8 @@ necessary patches:
 ```
 cd Linux_for_Tegra
 tar xvf <path_to_tarball>/core-18-jetson-tx1.tar.xz
-patch < p2371-2180-devkit.conf.patch
-patch < gnu_linux_tegraboot_emmc_full.xml.patch
+patch -p1 < p2371-2180-devkit.conf.patch
+patch -p1 < gnu_linux_tegraboot_emmc_full.xml.patch
 ```
 
 Then, put the device in [recovery mode](https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-282/index.html#page/Tegra%2520Linux%2520Driver%2520Package%2520Development%2520Guide%2Fflashing.html)
