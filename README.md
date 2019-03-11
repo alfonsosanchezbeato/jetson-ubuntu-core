@@ -9,10 +9,8 @@ First, you will need to build the kernel and gadget snaps for the
 device.  For that, clone the following repos and follow the
 instructions in the respective README.md files:
 
-```
-https://github.com/alfonsosanchezbeato/jetson-kernel-snap
-https://github.com/alfonsosanchezbeato/jetson-gadget-snap
-```
+<https://github.com/alfonsosanchezbeato/jetson-kernel-snap>  
+<https://github.com/alfonsosanchezbeato/jetson-gadget-snap>
 
 Once you have created the snaps, you can create an installation tarball
 by running
@@ -29,3 +27,6 @@ necessary only if different from `default`.
 After building, you will find a file named
 `out-tx1/core-18-jetson-tx1.tar.xz` that contains instructions and all
 needed files to flash UC18 into the device.
+
+You can also download the latest tarball from the [releases tab](
+https://github.com/alfonsosanchezbeato/jetson-ubuntu-core/releases).
