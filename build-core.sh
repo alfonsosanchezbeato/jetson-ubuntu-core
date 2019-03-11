@@ -41,6 +41,7 @@ fi
 
 channel=stable
 outdir=out-"$board"
+rm -rf "$outdir"
 mkdir -p "$outdir"
 
 # Generate model assertion
@@ -60,6 +61,23 @@ cat << EOF | snap sign -k "$key_id" > "$assert_file"
 }
 EOF
 
-ubuntu-image snap --channel "$channel" --output-dir "$outdir" "$assert_file" \
+# Create image file
+ubuntu-image snap --output-dir "$outdir" --workdir "$outdir" \
+             --channel "$channel" \
              --extra-snaps "$gadget_snap" \
-             --extra-snaps "$kernel_snap"
+             --extra-snaps "$kernel_snap" \
+             "$assert_file"
+
+# Generate tarball with all the needed parts for flashing
+final_tree="$outdir"/final_tree
+bootloader_dir="$final_tree"/bootloader
+u_boot_dir="$bootloader_dir"/t210ref/p2371-2180
+mkdir -p "$u_boot_dir"
+cp "$outdir"/unpack/gadget/u-boot.bin "$u_boot_dir"
+cp "$outdir"/volumes/jetson/part0.img "$bootloader_dir"/system.img
+cp "$outdir"/volumes/jetson/part18.img "$bootloader_dir"/system-data.ext4
+cp tarball-parts/* "$final_tree"
+pushd .
+cd "$final_tree"
+tar -cJf ../core-18-jetson-"$board".tar.xz *
+popd

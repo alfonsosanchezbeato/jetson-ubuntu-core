@@ -1,0 +1,11 @@
+--- p2371-2180-devkit.orig.conf	2019-03-08 11:05:47.008559924 +0100
++++ p2371-2180-devkit.conf	2019-03-08 13:51:01.050034494 +0100
+@@ -46,7 +46,7 @@
+ if [ -z "${USE_UBOOT}" ]; then
+ 	USE_UBOOT=1;
+ fi;
+-ROOTFSSIZE=14GiB;
++ROOTFSSIZE=67108864;
+ CMDLINE_ADD="console=ttyS0,115200n8 console=tty0 OS=l4t fbcon=map:0 net.ifnames=0";
+ target_board="t210ref";
+ ROOT_DEV="mmcblk0p1 ------------ internal eMMC.

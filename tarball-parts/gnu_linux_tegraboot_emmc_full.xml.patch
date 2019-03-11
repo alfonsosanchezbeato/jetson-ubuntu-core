@@ -1,0 +1,10 @@
+--- /bootloader/t210ref/cfg/gnu_linux_tegraboot_emmc_full.orig.xml	2019-03-05 13:49:00.429885310 +0100
++++ /bootloader/t210ref/cfg/gnu_linux_tegraboot_emmc_full.xml	2019-03-07 10:03:24.911431735 +0100
+@@ -232,6 +232,7 @@
+             <file_system_attribute> 0 </file_system_attribute>
+             <allocation_attribute> 0x808 </allocation_attribute>
+             <percent_reserved> 0 </percent_reserved>
++            <filename> system-data.ext4 </filename>
+         </partition>
+ 
+         <partition name="GPT" id="24" type="GPT">
