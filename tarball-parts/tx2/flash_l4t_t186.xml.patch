@@ -1,0 +1,10 @@
+--- a/bootloader/t186ref/cfg/flash_l4t_t186.xml	2019-03-27 13:43:33.172843137 +0100
++++ b/bootloader/t186ref/cfg/flash_l4t_t186.xml	2019-03-27 13:46:23.119618269 +0100
+@@ -449,6 +449,7 @@
+             <file_system_attribute> 0 </file_system_attribute>
+             <allocation_attribute> 0x808 </allocation_attribute>
+             <percent_reserved> 0 </percent_reserved>
++            <filename> system-data.ext4 </filename>
+         </partition>
+         <partition name="secondary_gpt" type="secondary_gpt">
+             <allocation_policy> sequential </allocation_policy>

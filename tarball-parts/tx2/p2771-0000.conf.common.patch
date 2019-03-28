@@ -1,0 +1,11 @@
+--- a/p2771-0000.conf.common	2019-03-27 13:50:19.427467184 +0100
++++ b/p2771-0000.conf.common	2019-03-28 11:54:31.556401208 +0100
+@@ -228,7 +228,7 @@
+ if [ -z "${USE_UBOOT}" ]; then
+ 	USE_UBOOT=1;
+ fi;
+-ROOTFSSIZE=28GiB;
++ROOTFSSIZE=67108864;
+ CMDLINE_ADD="console=ttyS0,115200n8 console=tty0 fbcon=map:0 net.ifnames=0";
+ target_board="t186ref";
+ ROOT_DEV="mmcblk0p12 ------------ internal eMMC.

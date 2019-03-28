@@ -71,13 +71,19 @@ ubuntu-image snap --output-dir "$outdir" --workdir "$outdir" \
 # Generate tarball with all the needed parts for flashing
 final_tree="$outdir"/final_tree
 bootloader_dir="$final_tree"/bootloader
-u_boot_dir="$bootloader_dir"/t210ref/p2371-2180
+if [ "$board" = tx1 ]; then
+    u_boot_dir="$bootloader_dir"/t210ref/p2371-2180
+    writable_part=18
+else
+    u_boot_dir="$bootloader_dir"/t186ref/p2771-0000/500
+    writable_part=30
+fi
 mkdir -p "$u_boot_dir"
 cp "$outdir"/unpack/gadget/u-boot.bin "$u_boot_dir"
 cp "$outdir"/volumes/jetson/part0.img "$bootloader_dir"/system.img
-cp "$outdir"/volumes/jetson/part18.img "$bootloader_dir"/system-data.ext4
-cp tarball-parts/* "$final_tree"
+cp "$outdir"/volumes/jetson/part"$writable_part".img "$bootloader_dir"/system-data.ext4
+cp tarball-parts/"$board"/* "$final_tree"
 pushd .
 cd "$final_tree"
-tar -cJf ../core-18-jetson-"$board".tar.xz *
+tar -cJf ../core-18-jetson-"$board".tar.xz -- *
 popd
