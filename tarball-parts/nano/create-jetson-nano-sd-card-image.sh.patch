@@ -1,0 +1,39 @@
+--- a/create-jetson-nano-sd-card-image.sh	2019-04-10 10:52:55.571005225 +0200
++++ b/create-jetson-nano-sd-card-image.sh	2019-04-10 10:53:32.915595444 +0200
+@@ -169,7 +169,12 @@
+ {
+ 	echo "${script_name} - create partitions"
+ 
++	boot_part_file=system-boot.ext4
++	boot_part_size=$(stat --printf=%s "${bootloader_dir}/$boot_part_file")
++	system_part_file=system-data.ext4
++	system_part_size=$(stat --printf=%s "${bootloader_dir}/$system_part_file")
+ 	partitions=(\
++		"part_num=1;part_name=APP;part_size=$boot_part_size;part_file=$boot_part_file" \
+ 		'part_num=2;part_name=TBC;part_size=131072;part_file=nvtboot_cpu.bin.encrypt' \
+ 		'part_num=3;part_name=RP1;part_size=458752;part_file=tegra210-p3448-0000-p3449-0000-${dtb_id}.dtb.encrypt' \
+ 		'part_num=4;part_name=EBT;part_size=589824;part_file=cboot.bin.encrypt' \
+@@ -181,7 +186,7 @@
+ 		'part_num=10;part_name=DTB;part_size=458752;part_file=tegra210-p3448-0000-p3449-0000-${dtb_id}.dtb.encrypt' \
+ 		'part_num=11;part_name=RP4;part_size=131072;part_file=rp4.blob' \
+ 		'part_num=12;part_name=BMP;part_size=81920;part_file=bmp.blob' \
+-		'part_num=1;part_name=APP;part_size=0;part_file='
++		"part_num=13;part_name=writable;part_size=$system_part_size;part_file=$system_part_file"
+ 	)
+ 
+ 	part_type=8300 # Linux Filesystem
+@@ -205,13 +210,7 @@
+ 	for part in "${partitions[@]}"; do
+ 		eval "${part}"
+ 		target_file=""
+-		if [ "${part_name}" = "APP" ]; then
+-			echo "${script_name} - writing rootfs image"
+-			mkfs.ext4 -j "${loop_dev}p${part_num}"
+-			mount "${loop_dev}p${part_num}" "${tmpdir}"
+-			cp -a "${rfs_dir}"/* "${tmpdir}"
+-			umount "${tmpdir}"
+-		elif [ -e "${signed_image_dir}/${part_file}" ]; then
++		if [ -e "${signed_image_dir}/${part_file}" ]; then
+ 			target_file="${signed_image_dir}/${part_file}"
+ 		elif [ -e "${bootloader_dir}/${part_file}" ]; then
+ 			target_file="${bootloader_dir}/${part_file}"
