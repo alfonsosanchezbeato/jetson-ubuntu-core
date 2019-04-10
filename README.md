@@ -25,8 +25,8 @@ able to create a model for the device. The key name parameter is
 necessary only if different from `default`.
 
 After building, you will find a file named
-`out-tx1/core-18-jetson-<tx1|tx2|nano>.tar.xz` that contains instructions and all
-needed files to flash UC18 into the device.
+`out-<tx1|tx2|nano>/core-18-jetson-<tx1|tx2|nano>.tar.xz` that contains
+instructions and all needed files to flash UC18 into the device.
 
 You can also download the latest tarball from the [releases tab](
 https://github.com/alfonsosanchezbeato/jetson-ubuntu-core/releases).
