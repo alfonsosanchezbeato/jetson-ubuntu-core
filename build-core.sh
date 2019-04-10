@@ -41,7 +41,7 @@ fi
 
 channel=stable
 outdir=out-"$board"
-rm -rf "$outdir"
+sudo rm -rf "$outdir"
 mkdir -p "$outdir"
 
 # Generate model assertion

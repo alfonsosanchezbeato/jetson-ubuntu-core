@@ -1,6 +1,16 @@
 --- a/create-jetson-nano-sd-card-image.sh	2019-04-10 10:52:55.571005225 +0200
-+++ b/create-jetson-nano-sd-card-image.sh	2019-04-10 10:53:32.915595444 +0200
-@@ -169,7 +169,12 @@
++++ b/create-jetson-nano-sd-card-image.sh	2019-04-10 12:51:47.636862929 +0200
+@@ -57,7 +57,9 @@
+ 	fi
+ 
+ 	if [ -n "${loop_dev}" ]; then
++		sync
+ 		losetup -d "${loop_dev}"
++		sync
+ 	fi
+ }
+ trap cleanup EXIT
+@@ -169,7 +171,12 @@
  {
  	echo "${script_name} - create partitions"
  
@@ -13,7 +23,7 @@
  		'part_num=2;part_name=TBC;part_size=131072;part_file=nvtboot_cpu.bin.encrypt' \
  		'part_num=3;part_name=RP1;part_size=458752;part_file=tegra210-p3448-0000-p3449-0000-${dtb_id}.dtb.encrypt' \
  		'part_num=4;part_name=EBT;part_size=589824;part_file=cboot.bin.encrypt' \
-@@ -181,7 +186,7 @@
+@@ -181,7 +188,7 @@
  		'part_num=10;part_name=DTB;part_size=458752;part_file=tegra210-p3448-0000-p3449-0000-${dtb_id}.dtb.encrypt' \
  		'part_num=11;part_name=RP4;part_size=131072;part_file=rp4.blob' \
  		'part_num=12;part_name=BMP;part_size=81920;part_file=bmp.blob' \
@@ -22,7 +32,7 @@
  	)
  
  	part_type=8300 # Linux Filesystem
-@@ -205,13 +210,7 @@
+@@ -205,13 +212,7 @@
  	for part in "${partitions[@]}"; do
  		eval "${part}"
  		target_file=""
@@ -37,3 +47,13 @@
  			target_file="${signed_image_dir}/${part_file}"
  		elif [ -e "${bootloader_dir}/${part_file}" ]; then
  			target_file="${bootloader_dir}/${part_file}"
+@@ -224,7 +225,9 @@
+ 	done
+ 
+ 	rmdir "${tmpdir}"
++	sync
+ 	losetup -d "${loop_dev}"
++	sync
+ 	tmpdir=""
+ 	loop_dev=""
+ }
