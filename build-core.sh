@@ -79,6 +79,7 @@ if [ "$board" = nano ]; then
     cp unpack/gadget/u-boot.bin Linux_for_Tegra/bootloader/t210ref/p3450-porg/
     cp volumes/jetson/part0.img Linux_for_Tegra/bootloader/system-boot.ext4
     cp volumes/jetson/part12.img Linux_for_Tegra/bootloader/system-data.ext4
+    rm jetson.img
     cd Linux_for_Tegra
     patch -p1 < ../../tarball-parts/nano/create-jetson-nano-sd-card-image.sh.patch
     sudo ./create-jetson-nano-sd-card-image.sh -o jetson.img -s 600M -r 200
