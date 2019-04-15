@@ -82,6 +82,7 @@ if [ "$board" = nano ]; then
     rm jetson.img
     cd Linux_for_Tegra
     patch -p1 < ../../tarball-parts/nano/create-jetson-nano-sd-card-image.sh.patch
+    patch -p1 < ../../tarball-parts/nano/flash.sh.patch
     sudo ./create-jetson-nano-sd-card-image.sh -o jetson.img -s 600M -r 200
     popd
     mv "$outdir"/Linux_for_Tegra/jetson.img "$final_tree"

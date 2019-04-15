@@ -10,6 +10,15 @@
  	fi
  }
  trap cleanup EXIT
+@@ -148,7 +148,7 @@
+ 	echo "${script_name} - creating signed images"
+ 
+ 	# Generate flashcmd.txt for signing images
+-	BOARDID="3448" FAB="${rev}" "${l4t_dir}/flash.sh" "--no-flash" "p3448-0000-sd" "mmcblk0p1"
++	BOARDID="3448" FAB="${rev}" "${l4t_dir}/flash.sh" "-r" "--no-flash" "p3448-0000-sd" "mmcblk0p1"
+ 
+ 	if [ ! -f "${bootloader_dir}/flashcmd.txt" ]; then
+ 		echo "ERROR: ${bootloader_dir}/flashcmd.txt not found" > /dev/stderr
 @@ -169,7 +171,12 @@
  {
  	echo "${script_name} - create partitions"

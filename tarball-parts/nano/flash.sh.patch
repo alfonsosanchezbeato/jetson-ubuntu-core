@@ -1,0 +1,13 @@
+--- a/flash.sh	2019-03-13 08:45:13.000000000 +0100
++++ b/flash.sh	2019-04-15 14:46:38.445259529 +0200
+@@ -1873,10 +1873,6 @@
+ 	APP_TAG+="-e s/APPFILE/${localsysfile}/ ";
+ 	if [ "${skip_systemimg}" != "true" ]; then
+ 		echo "Reusing existing ${localsysfile}... ";
+-		if [ ! -e "${localsysfile}" ]; then
+-			echo "file does not exist.";
+-			exit 1;
+-		fi;
+ 		echo "done.";
+ 	else
+ 		echo "Skip generating ${localsysfile}";
