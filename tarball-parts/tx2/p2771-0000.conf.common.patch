@@ -5,7 +5,7 @@
  	USE_UBOOT=1;
  fi;
 -ROOTFSSIZE=28GiB;
-+ROOTFSSIZE=67108864;
++ROOTFSSIZE=268435456;
  CMDLINE_ADD="console=ttyS0,115200n8 console=tty0 fbcon=map:0 net.ifnames=0";
  target_board="t186ref";
  ROOT_DEV="mmcblk0p12 ------------ internal eMMC.
