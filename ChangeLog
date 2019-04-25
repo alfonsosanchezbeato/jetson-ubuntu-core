@@ -1,0 +1,12 @@
+ver 0.4:
+    Gadget
+        * all: u-boot: faster loading of the kernel
+        * all: make boot partition larger to support kernel updates
+        * nano: fix bug so now it can start with a HDMI monitor connected
+    Kernel
+        * nano: fix loading of GPU firmware
+        * tx2,nano: backport apparmor patches
+        * tx2,nano: disable debug info in modules to reduce kernel snap size
+    Build scripts
+        * nano: avoid creating system.img in build
+        * tx1,tx2: match boot partition size with the new one from gadget
