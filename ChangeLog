@@ -1,3 +1,8 @@
+ver 0.5:
+    Kernel
+        * all: set core18 as base snap
+        * tx2, nano: fix random kernel crash when using squashfs
+
 ver 0.4:
     Gadget
         * all: u-boot: faster loading of the kernel
