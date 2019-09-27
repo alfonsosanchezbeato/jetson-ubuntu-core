@@ -1,0 +1,41 @@
+--- a/flash.sh	2019-09-25 15:00:32.140588229 +0200
++++ b/flash.sh	2019-09-27 14:13:09.961474033 +0200
+@@ -1484,13 +1484,13 @@
+ else
+ 	ramdisk="/dev/null"
+ fi
+-echo -n "Making Boot image... ";
+-MKBOOTARG+="--kernel ${kernel_image} ";
+-MKBOOTARG+="--ramdisk ${ramdisk} ";
+-MKBOOTARG+="--board ${target_rootdev} ";
+-MKBOOTARG+="--output ${localbootfile} ";
+-./mkbootimg ${MKBOOTARG} --cmdline "${cmdline}" > /dev/null 2>&1;
+-chkerr;
++# echo -n "Making Boot image... ";
++# MKBOOTARG+="--kernel ${kernel_image} ";
++# MKBOOTARG+="--ramdisk ${ramdisk} ";
++# MKBOOTARG+="--board ${target_rootdev} ";
++# MKBOOTARG+="--output ${localbootfile} ";
++# ./mkbootimg ${MKBOOTARG} --cmdline "${cmdline}" > /dev/null 2>&1;
++# chkerr;
+ LNX_TAG+="-e s/LNXFILE/${localbootfile}/ ";
+ 
+ # NCT_TAG:
+@@ -2091,7 +2091,7 @@
+ 	LNX) target_partfile="${localbootfile}";
+ 		if [ "${tegraid}" = "0x21" ]; then
+ 			if [ "${read_part_name}" = "" ]; then
+-				need_sign=1;
++				need_sign=0;
+ 			fi;
+ 		else
+ 			pre_cmds="write DTB ${dtbfilename}; ";
+@@ -2113,7 +2113,7 @@
+ 	MPB) target_partfile="${mtsprebootname}"; ;;
+ 	MBP) target_partfile="${mtsname}"; ;;
+ 	BPF) target_partfile="${bpffilename}"; ;;
+-	APP) target_partfile="${localsysfile}"; ;;
++	snapbootsel) target_partfile="${localsysfile}"; ;;
+ 	DTB|RP1) target_partfile="${dtbfilename}";
+ 		need_sign=1;
+ 		;;

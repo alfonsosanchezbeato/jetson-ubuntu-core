@@ -1,0 +1,19 @@
+--- a/bootloader/t186ref/cfg/flash_t194_sdmmc.xml	2019-09-25 12:39:24.955555068 +0200
++++ b/bootloader/t186ref/cfg/flash_t194_sdmmc.xml	2019-09-27 14:13:32.861909903 +0200
+@@ -161,7 +161,7 @@
+             <allocation_attribute> 8 </allocation_attribute>
+             <percent_reserved> 0 </percent_reserved>
+         </partition>
+-        <partition name="APP" type="data">
++        <partition name="snapbootsel" type="data">
+             <allocation_policy> sequential </allocation_policy>
+             <filesystem_type> basic </filesystem_type>
+             <size> APPSIZE </size>
+@@ -490,6 +490,7 @@
+             <allocation_attribute> 0x808 </allocation_attribute>
+             <percent_reserved> 0 </percent_reserved>
+             <align_boundary> 4096 </align_boundary>
++            <filename> system-data.ext4 </filename>
+         </partition>
+         <partition name="secondary_gpt" type="secondary_gpt">
+             <allocation_policy> sequential </allocation_policy>

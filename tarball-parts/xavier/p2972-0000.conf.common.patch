@@ -1,0 +1,11 @@
+--- a/p2972-0000.conf.common	2019-09-25 12:45:07.541168520 +0200
++++ b/p2972-0000.conf.common	2019-09-25 12:45:43.893659292 +0200
+@@ -171,7 +171,7 @@
+ BPFDTB_FILE=tegra194-a01-bpmp-p2888-a01.dtb;
+ DTB_FILE=tegra194-p2888-0001-p2822-0000.dtb;
+ TBCDTB_FILE=tegra194-p2888-0001-p2822-0000.dtb;
+-ROOTFSSIZE=28GiB;
++ROOTFSSIZE=131072;
+ CMDLINE_ADD="console=ttyTCU0,115200n8 console=tty0 fbcon=map:0 net.ifnames=0 rootfstype=ext4";
+ target_board="t186ref";
+ ROOT_DEV="mmcblk0p12 ------------ internal eMMC.
