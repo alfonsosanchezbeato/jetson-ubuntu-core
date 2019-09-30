@@ -16,7 +16,7 @@
 
 print_usage()
 {
-    printf "Usage: %s <tx1|tx2|nano> <authority_id> <gadget_snap> <kernel_snap> [key_id]\n" \
+    printf "Usage: %s <tx1|tx2|nano|xavier> <authority_id> <gadget_snap> <kernel_snap> [key_id]\n" \
            "$(basename "$0")"
 }
 
@@ -26,7 +26,8 @@ if [ $# -lt 4 ] || [ $# -gt 5 ]; then
     exit 1
 fi
 board=$1
-if [ "$board" != tx1 ] && [ "$board" != tx2 ] && [ "$board" != nano ]; then
+if [ "$board" != tx1 ] && [ "$board" != tx2 ] &&
+       [ "$board" != nano ] && [ "$board" != xavier ]; then
     print_usage
     exit 1
 fi
@@ -87,6 +88,15 @@ if [ "$board" = nano ]; then
     popd
     mv "$outdir"/Linux_for_Tegra/jetson.img "$final_tree"
     cp tarball-parts/"$board"/README.md "$final_tree"
+elif [ "$board" = xavier ]; then
+    bootloader_dir="$final_tree"/bootloader
+    writable_part=36
+    mkdir -p "$bootloader_dir"
+    cp "$outdir"/unpack/gadget/cboot_t194.bin "$bootloader_dir"/
+    cp "$outdir"/unpack/image/boot/lk/snapbootsel.bin "$bootloader_dir"/system.img
+    cp "$outdir"/unpack/image/boot/lk/boot.img "$bootloader_dir"/boot.img
+    cp "$outdir"/volumes/jetson/part"$writable_part".img "$bootloader_dir"/system-data.ext4
+    cp tarball-parts/"$board"/* "$final_tree"
 else
     bootloader_dir="$final_tree"/bootloader
     if [ "$board" = tx1 ]; then
