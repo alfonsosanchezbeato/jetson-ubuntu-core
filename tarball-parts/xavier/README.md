@@ -24,3 +24,10 @@ and flash it. The only difference with normal flashing is that you need
 to use the `'-r'` flag to avoid creating a new system image:
 
 `sudo ./flash.sh -r jetson-xavier mmcblk0p1`
+
+
+# Release notes
+
+The random number generator takes a lot of time until it gets seeded. console-conf will not start until this has happened, which can take up to 10 minutes. After the initial configuration, the problem persists, but we can log-in into the device without waiting for the generator.
+
+On first boot, you need to have the ethernet connected, otherwise console-conf will never start.
