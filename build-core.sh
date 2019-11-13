@@ -65,8 +65,8 @@ EOF
 # Create image file
 ubuntu-image snap --output-dir "$outdir" --workdir "$outdir" \
              --channel "$channel" \
-             --extra-snaps "$gadget_snap" \
-             --extra-snaps "$kernel_snap" \
+             --snap "$gadget_snap" \
+             --snap "$kernel_snap" \
              "$assert_file"
 
 # Generate tarball with all the needed parts for flashing
