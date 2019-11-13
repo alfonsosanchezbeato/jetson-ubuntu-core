@@ -12,6 +12,12 @@ instructions in the respective README.md files:
 <https://github.com/alfonsosanchezbeato/jetson-kernel-snap>
 <https://github.com/alfonsosanchezbeato/jetson-gadget-snap>
 
+Then, install `ubuntu-image` with
+
+    snap install --edge ubuntu-image
+
+(we need to use the edge channel for the moment for xavier images).
+
 Once you have created the snaps, you can create an installation tarball
 by running
 
